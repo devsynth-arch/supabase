@@ -54,7 +54,7 @@ const LogDrainsSettings: NextPageWithLayout = () => {
 
   const { data: logDrains } = useLogDrainsQuery({ ref }, { enabled: logDrainsEnabled })
 
-  const { mutate: createLogDrain, isLoading: createLoading } = useCreateLogDrainMutation({
+  const { mutate: createLogDrain, isPending: createLoading } = useCreateLogDrainMutation({
     onSuccess: () => {
       toast.success('Log drain destination created')
       setOpen(false)
@@ -65,7 +65,7 @@ const LogDrainsSettings: NextPageWithLayout = () => {
     },
   })
 
-  const { mutate: updateLogDrain, isLoading: updateLoading } = useUpdateLogDrainMutation({
+  const { mutate: updateLogDrain, isPending: updateLoading } = useUpdateLogDrainMutation({
     onSuccess: () => {
       toast.success('Log drain updated')
       setOpen(false)

@@ -108,7 +108,7 @@ export const GridHeaderActions = ({ table, isRefetching }: GridHeaderActionsProp
   const realtimeEnabledTables = realtimePublication?.tables ?? []
   const isRealtimeEnabled = realtimeEnabledTables.some((t: any) => t.id === table?.id)
 
-  const { mutate: updatePublications, isLoading: isTogglingRealtime } =
+  const { mutate: updatePublications, isPending: isTogglingRealtime } =
     useDatabasePublicationUpdateMutation({
       onSuccess: () => {
         setShowEnableRealtime(false)

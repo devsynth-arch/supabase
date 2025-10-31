@@ -72,7 +72,7 @@ export const CreateWrapperSheet = ({
 
   const [formErrors, setFormErrors] = useState<{ [k: string]: string }>({})
 
-  const { mutateAsync: createFDW, isLoading: isCreatingWrapper } = useFDWCreateMutation({
+  const { mutateAsync: createFDW, isPending: isCreatingWrapper } = useFDWCreateMutation({
     onSuccess: () => {
       toast.success(`Successfully created ${wrapperMeta?.label} foreign data wrapper`)
       setNewTables([])
@@ -99,7 +99,7 @@ export const CreateWrapperSheet = ({
     ),
   }
 
-  const { mutateAsync: createSchema, isLoading: isCreatingSchema } = useSchemaCreateMutation()
+  const { mutateAsync: createSchema, isPending: isCreatingSchema } = useSchemaCreateMutation()
 
   const onUpdateTable = (values: any) => {
     setNewTables((prev) => {

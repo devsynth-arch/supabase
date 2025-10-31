@@ -87,7 +87,7 @@ export const MemberActions = ({ member }: MemberActionsProps) => {
   )
   const canRevokeInvite = canDeleteUserInvites && hasOrgRole
 
-  const { mutate: deleteOrganizationMember, isLoading: isDeletingMember } =
+  const { mutate: deleteOrganizationMember, isPending: isDeletingMember } =
     useOrganizationMemberDeleteMutation({
       onSuccess: () => {
         toast.success(`Successfully removed ${member.primary_email}`)
@@ -95,7 +95,7 @@ export const MemberActions = ({ member }: MemberActionsProps) => {
       },
     })
 
-  const { mutate: inviteMember, isLoading: isCreatingInvite } =
+  const { mutate: inviteMember, isPending: isCreatingInvite } =
     useOrganizationCreateInvitationMutation({
       onSuccess: () => {
         toast.success('Resent the invitation.')
@@ -105,7 +105,7 @@ export const MemberActions = ({ member }: MemberActionsProps) => {
       },
     })
 
-  const { mutate: deleteInvitation, isLoading: isDeletingInvite } =
+  const { mutate: deleteInvitation, isPending: isDeletingInvite } =
     useOrganizationDeleteInvitationMutation()
 
   const isLoading = isDeletingMember || isDeletingInvite || isCreatingInvite

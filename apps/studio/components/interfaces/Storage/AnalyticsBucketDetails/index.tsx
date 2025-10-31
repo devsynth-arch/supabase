@@ -454,7 +454,7 @@ const ExtensionNeedsUpgrade = ({
 }
 
 const WrapperMissing = ({ bucketName }: { bucketName: string }) => {
-  const { mutateAsync: createIcebergWrapper, isLoading: isCreatingIcebergWrapper } =
+  const { mutateAsync: createIcebergWrapper, isPending: isCreatingIcebergWrapper } =
     useIcebergWrapperCreateMutation()
 
   const onSetupWrapper = async () => {

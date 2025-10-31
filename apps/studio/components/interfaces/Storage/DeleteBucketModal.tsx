@@ -79,7 +79,7 @@ export const DeleteBucketModal = ({ visible, bucket, onClose }: DeleteBucketModa
 
   const { mutateAsync: deletePolicy } = useDatabasePolicyDeleteMutation()
 
-  const { mutate: deleteBucket, isLoading: isDeletingBucket } = useBucketDeleteMutation({
+  const { mutate: deleteBucket, isPending: isDeletingBucket } = useBucketDeleteMutation({
     onSuccess: async () => {
       if (!project) return console.error('Project is required')
 
@@ -121,10 +121,10 @@ export const DeleteBucketModal = ({ visible, bucket, onClose }: DeleteBucketModa
     },
   })
 
-  const { mutateAsync: deleteAnalyticsBucketCleanUp, isLoading: isCleaningUpAnalyticsBucket } =
+  const { mutateAsync: deleteAnalyticsBucketCleanUp, isPending: isCleaningUpAnalyticsBucket } =
     useAnalyticsBucketDeleteCleanUp()
 
-  const { mutate: deleteAnalyticsBucket, isLoading: isDeletingAnalyticsBucket } =
+  const { mutate: deleteAnalyticsBucket, isPending: isDeletingAnalyticsBucket } =
     useAnalyticsBucketDeleteMutation({
       onSuccess: async () => {
         if (project?.connectionString) {

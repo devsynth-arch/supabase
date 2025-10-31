@@ -168,7 +168,7 @@ export const NamespaceWithTables = ({
     { enabled: !!token }
   )
 
-  const { mutateAsync: importForeignSchema, isLoading: isImportingForeignSchema } =
+  const { mutateAsync: importForeignSchema, isPending: isImportingForeignSchema } =
     useFDWImportForeignSchemaMutation()
 
   const rescanNamespace = async () => {

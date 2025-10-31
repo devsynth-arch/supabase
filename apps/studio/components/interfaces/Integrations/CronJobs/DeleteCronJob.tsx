@@ -22,7 +22,7 @@ export const DeleteCronJob = ({ cronJob, visible, onClose }: DeleteCronJobProps)
   const [searchQuery] = useQueryState('search', parseAsString.withDefault(''))
 
   const { mutate: sendEvent } = useSendEventMutation()
-  const { mutate: deleteDatabaseCronJob, isLoading } = useDatabaseCronJobDeleteMutation({
+  const { mutate: deleteDatabaseCronJob, isPending } = useDatabaseCronJobDeleteMutation({
     onSuccess: () => {
       sendEvent({
         action: 'cron_job_deleted',
@@ -60,7 +60,7 @@ export const DeleteCronJob = ({ cronJob, visible, onClose }: DeleteCronJobProps)
         }}
         onConfirm={handleDelete}
         title={`Delete the cron job`}
-        loading={isLoading}
+        loading={isPending}
         confirmLabel={`Delete`}
         alert={{ title: 'You cannot recover this cron job once deleted.' }}
       />
@@ -77,7 +77,7 @@ export const DeleteCronJob = ({ cronJob, visible, onClose }: DeleteCronJobProps)
         cleanPointerEventsNoneOnBody()
       }}
       title="Delete this cron job"
-      loading={isLoading}
+      loading={isPending}
       confirmLabel={`Delete cron job ${cronJob.jobname}`}
       confirmPlaceholder="Type in name of cron job"
       confirmString={cronJob.jobname ?? 'Unknown'}

@@ -16,7 +16,7 @@ const DeleteEnumeratedTypeModal = ({
   onClose,
 }: DeleteEnumeratedTypeModalProps) => {
   const { data: project } = useSelectedProjectQuery()
-  const { mutate: deleteEnumeratedType, isLoading: isDeleting } = useEnumeratedTypeDeleteMutation({
+  const { mutate: deleteEnumeratedType, isPending: isDeleting } = useEnumeratedTypeDeleteMutation({
     onSuccess: () => {
       toast.success(`Successfully deleted "${selectedEnumeratedType.name}"`)
       onClose()

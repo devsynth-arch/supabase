@@ -15,7 +15,7 @@ export const DeleteTrigger = ({ trigger, visible, setVisible }: DeleteTriggerPro
   const { data: project } = useSelectedProjectQuery()
   const { name, schema } = trigger ?? {}
 
-  const { mutate: deleteDatabaseTrigger, isLoading } = useDatabaseTriggerDeleteMutation()
+  const { mutate: deleteDatabaseTrigger, isPending } = useDatabaseTriggerDeleteMutation()
 
   async function handleDelete() {
     if (!project) return console.error('Project is required')
@@ -43,7 +43,7 @@ export const DeleteTrigger = ({ trigger, visible, setVisible }: DeleteTriggerPro
       onCancel={() => setVisible(!visible)}
       onConfirm={handleDelete}
       title="Delete this trigger"
-      loading={isLoading}
+      loading={isPending}
       confirmLabel={`Delete trigger ${name}`}
       confirmPlaceholder="Type in name of trigger"
       confirmString={name ?? ''}

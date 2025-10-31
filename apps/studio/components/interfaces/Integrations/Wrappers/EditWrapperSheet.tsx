@@ -48,7 +48,7 @@ export const EditWrapperSheet = ({
     connectionString: project?.connectionString,
   })
 
-  const { mutate: updateFDW, isLoading: isSaving } = useFDWUpdateMutation({
+  const { mutate: updateFDW, isPending: isSaving } = useFDWUpdateMutation({
     onSuccess: () => {
       toast.success(`Successfully updated ${wrapperMeta?.label} foreign data wrapper`)
       setWrapperTables([])

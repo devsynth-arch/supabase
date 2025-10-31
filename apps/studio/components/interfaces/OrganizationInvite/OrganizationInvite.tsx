@@ -39,7 +39,7 @@ export const OrganizationInvite = () => {
   const organizationName = isSuccessInvitation ? data?.organization_name : 'An organization'
   const loginRedirectLink = `/sign-in?returnTo=${encodeURIComponent(`/join?token=${token}&slug=${slug}`)}`
 
-  const { mutate: joinOrganization, isLoading: isJoining } =
+  const { mutate: joinOrganization, isPending: isJoining } =
     useOrganizationAcceptInvitationMutation({
       onSuccess: () => {
         router.push('/organizations')

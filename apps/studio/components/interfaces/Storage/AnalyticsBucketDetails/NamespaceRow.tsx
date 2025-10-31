@@ -8,9 +8,9 @@ import { ButtonTooltip } from 'components/ui/ButtonTooltip'
 import { useFDWImportForeignSchemaMutation } from 'data/fdw/fdw-import-foreign-schema-mutation'
 import { FDW } from 'data/fdw/fdws-query'
 import { useIcebergNamespaceTablesQuery } from 'data/storage/iceberg-namespace-tables-query'
+import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { BASE_PATH } from 'lib/constants'
 import { Button, cn, TableCell, TableRow } from 'ui'
-import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 
 type NamespaceRowProps = {
   bucketName: string
@@ -46,7 +46,7 @@ export const NamespaceRow = ({
     { enabled: !!token }
   )
 
-  const { mutateAsync: importForeignSchema, isLoading: isImportingForeignSchema } =
+  const { mutateAsync: importForeignSchema, isPending: isImportingForeignSchema } =
     useFDWImportForeignSchemaMutation()
 
   const rescanNamespace = async () => {

@@ -12,7 +12,7 @@ interface DeleteSecretModalProps {
 
 const DeleteSecretModal = ({ selectedSecret, onClose }: DeleteSecretModalProps) => {
   const { data: project } = useSelectedProjectQuery()
-  const { mutate: deleteSecret, isLoading: isDeleting } = useVaultSecretDeleteMutation({
+  const { mutate: deleteSecret, isPending: isDeleting } = useVaultSecretDeleteMutation({
     onSuccess: () => {
       toast.success(`Successfully deleted secret ${selectedSecret?.name}`)
       onClose()

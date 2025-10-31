@@ -15,7 +15,7 @@ const DeleteHookModal = ({ selectedHook, visible, onClose }: DeleteHookModalProp
   const { name, schema } = selectedHook ?? {}
 
   const { data: project } = useSelectedProjectQuery()
-  const { mutate: deleteDatabaseTrigger, isLoading: isDeleting } = useDatabaseTriggerDeleteMutation(
+  const { mutate: deleteDatabaseTrigger, isPending: isDeleting } = useDatabaseTriggerDeleteMutation(
     {
       onSuccess: () => {
         toast.success(`Successfully deleted ${name}`)

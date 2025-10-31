@@ -62,7 +62,7 @@ const CodePage = () => {
     { id: number; name: string; content: string; selected?: boolean }[]
   >([])
 
-  const { mutate: deployFunction, isLoading: isDeploying } = useEdgeFunctionDeployMutation({
+  const { mutate: deployFunction, isPending: isDeploying } = useEdgeFunctionDeployMutation({
     onSuccess: () => {
       toast.success('Successfully updated edge function')
       setShowDeployWarning(false)

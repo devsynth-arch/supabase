@@ -14,7 +14,7 @@ interface DeleteRoleModalProps {
 export const DeleteRoleModal = ({ role, visible, onClose }: DeleteRoleModalProps) => {
   const { data: project } = useSelectedProjectQuery()
 
-  const { mutate: deleteDatabaseRole, isLoading: isDeleting } = useDatabaseRoleDeleteMutation({
+  const { mutate: deleteDatabaseRole, isPending: isDeleting } = useDatabaseRoleDeleteMutation({
     onSuccess: () => {
       toast.success(`Successfully deleted role: ${role.name}`)
       onClose()

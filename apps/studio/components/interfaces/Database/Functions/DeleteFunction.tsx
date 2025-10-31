@@ -15,7 +15,7 @@ export const DeleteFunction = ({ func, visible, setVisible }: DeleteFunctionProp
   const { data: project } = useSelectedProjectQuery()
   const { name, schema } = func ?? {}
 
-  const { mutate: deleteDatabaseFunction, isLoading } = useDatabaseFunctionDeleteMutation({
+  const { mutate: deleteDatabaseFunction, isPending } = useDatabaseFunctionDeleteMutation({
     onSuccess: () => {
       toast.success(`Successfully removed function ${name}`)
       setVisible(false)
@@ -41,7 +41,7 @@ export const DeleteFunction = ({ func, visible, setVisible }: DeleteFunctionProp
         onCancel={() => setVisible(!visible)}
         onConfirm={handleDelete}
         title="Delete this function"
-        loading={isLoading}
+        loading={isPending}
         confirmLabel={`Delete function ${name}`}
         confirmPlaceholder="Type in name of function"
         confirmString={name ?? 'Unknown'}

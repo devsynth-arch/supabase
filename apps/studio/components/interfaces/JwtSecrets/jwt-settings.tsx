@@ -88,7 +88,7 @@ const JWTSettings = () => {
 
   const { data } = useJwtSecretUpdatingStatusQuery({ projectRef })
   const { data: config, isError } = useProjectPostgrestConfigQuery({ projectRef })
-  const { mutateAsync: updateJwt, isLoading: isSubmittingJwtSecretUpdateRequest } =
+  const { mutateAsync: updateJwt, isPending: isSubmittingJwtSecretUpdateRequest } =
     useJwtSecretUpdateMutation()
 
   const { data: legacyKey } = useLegacyJWTSigningKeyQuery({
@@ -102,7 +102,7 @@ const JWTSettings = () => {
     isLoading: isLoadingAuthConfig,
     isSuccess: isSuccessAuthConfig,
   } = useAuthConfigQuery({ projectRef })
-  const { mutate: updateAuthConfig, isLoading: isUpdatingAuthConfig } =
+  const { mutate: updateAuthConfig, isPending: isUpdatingAuthConfig } =
     useAuthConfigUpdateMutation()
 
   const { Failed, Updated, Updating } = JwtSecretUpdateStatus

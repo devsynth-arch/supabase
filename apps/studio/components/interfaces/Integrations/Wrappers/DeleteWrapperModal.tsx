@@ -13,7 +13,7 @@ interface DeleteWrapperModalProps {
 
 const DeleteWrapperModal = ({ selectedWrapper, onClose }: DeleteWrapperModalProps) => {
   const { data: project } = useSelectedProjectQuery()
-  const { mutate: deleteFDW, isLoading: isDeleting } = useFDWDeleteMutation({
+  const { mutate: deleteFDW, isPending: isDeleting } = useFDWDeleteMutation({
     onSuccess: () => {
       toast.success(`Successfully disabled ${selectedWrapper?.name} foreign data wrapper`)
       onClose()

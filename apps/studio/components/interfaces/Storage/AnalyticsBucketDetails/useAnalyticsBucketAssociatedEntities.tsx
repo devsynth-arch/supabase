@@ -66,12 +66,12 @@ export const useAnalyticsBucketAssociatedEntities = (
 }
 
 export const useAnalyticsBucketDeleteCleanUp = () => {
-  const { mutateAsync: deleteFDW, isLoading: isDeletingWrapper } = useFDWDeleteMutation({
+  const { mutateAsync: deleteFDW, isPending: isDeletingWrapper } = useFDWDeleteMutation({
     // Silence default error handler toast
     onError: () => {},
   })
 
-  const { mutateAsync: deleteS3AccessKey, isLoading: isDeletingKey } = useS3AccessKeyDeleteMutation(
+  const { mutateAsync: deleteS3AccessKey, isPending: isDeletingKey } = useS3AccessKeyDeleteMutation(
     {
       // Silence default error handler toast
       onError: () => {},
@@ -133,5 +133,5 @@ export const useAnalyticsBucketDeleteCleanUp = () => {
     }
   }
 
-  return { mutateAsync, isLoading: isDeleting }
+  return { mutateAsync, isPending: isDeleting }
 }

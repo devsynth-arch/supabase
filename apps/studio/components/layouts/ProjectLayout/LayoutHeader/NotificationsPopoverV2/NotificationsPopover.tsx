@@ -62,7 +62,7 @@ export const NotificationsPopoverV2 = () => {
   )
   const { data: summary } = useNotificationsSummaryQuery()
   const { mutate: updateNotifications } = useNotificationsV2UpdateMutation()
-  const { mutate: archiveAllNotifications, isLoading: isArchiving } =
+  const { mutate: archiveAllNotifications, isPending: isArchiving } =
     useNotificationsArchiveAllMutation({
       onSuccess: () => toast.success('Successfully archived all notifications'),
     })

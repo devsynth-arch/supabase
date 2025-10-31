@@ -24,7 +24,7 @@ export const APIKeyDeleteDialog = ({ apiKey, lastSeen }: APIKeyDeleteDialogProps
     '*'
   )
 
-  const { mutate: deleteAPIKey, isLoading: isDeletingAPIKey } = useAPIKeyDeleteMutation({
+  const { mutate: deleteAPIKey, isPending: isDeletingAPIKey } = useAPIKeyDeleteMutation({
     onSuccess: () => {
       toast.success(`Successfully deleted API key`)
       setIsOpen(false)

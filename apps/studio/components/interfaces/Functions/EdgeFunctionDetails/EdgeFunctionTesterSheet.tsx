@@ -94,7 +94,7 @@ export const EdgeFunctionTesterSheet = ({ visible, onClose }: EdgeFunctionTester
   const { serviceKey } = getKeys(apiKeys)
 
   const { mutate: sendEvent } = useSendEventMutation()
-  const { mutate: testEdgeFunction, isLoading } = useEdgeFunctionTestMutation({
+  const { mutate: testEdgeFunction, isPending } = useEdgeFunctionTestMutation({
     onSuccess: (res) => setResponse(res),
     onError: (err) => {
       setError(err instanceof Error ? err.message : 'An unknown error occurred')
@@ -246,7 +246,7 @@ export const EdgeFunctionTesterSheet = ({ visible, onClose }: EdgeFunctionTester
                     {...field}
                     size="tiny"
                     placeholder="Enter key..."
-                    disabled={isLoading}
+                    disabled={isPending}
                     className="h-auto py-2 font-mono rounded-none shadow-none bg-transparent border-l-0 border-r-1 border-t-0 border-b-0 border-border"
                   />
                 </FormControl_Shadcn_>
@@ -261,7 +261,7 @@ export const EdgeFunctionTesterSheet = ({ visible, onClose }: EdgeFunctionTester
                     {...field}
                     size="tiny"
                     placeholder="Enter value..."
-                    disabled={isLoading}
+                    disabled={isPending}
                     className="h-auto py-2 font-mono rounded-none shadow-none bg-transparent border-none"
                   />
                 </FormControl_Shadcn_>
@@ -308,7 +308,7 @@ export const EdgeFunctionTesterSheet = ({ visible, onClose }: EdgeFunctionTester
                           <Select
                             value={field.value}
                             onValueChange={field.onChange}
-                            disabled={isLoading}
+                            disabled={isPending}
                           >
                             <SelectTrigger className="w-full">
                               <SelectValue placeholder="Select method" />
@@ -336,7 +336,7 @@ export const EdgeFunctionTesterSheet = ({ visible, onClose }: EdgeFunctionTester
                               {...field}
                               placeholder="Request body (JSON)"
                               rows={3}
-                              disabled={isLoading}
+                              disabled={isPending}
                               className="font-mono text-xs"
                             />
                           </FormControl_Shadcn_>
@@ -404,7 +404,7 @@ export const EdgeFunctionTesterSheet = ({ visible, onClose }: EdgeFunctionTester
                         </Tabs>
                       )}
                     </div>
-                  ) : isLoading ? (
+                  ) : isPending ? (
                     <div className="h-full flex flex-col items-center justify-center gap-2">
                       <Loader2 size={24} className="text-foreground-muted animate-spin" />
                       <p className="text-sm text-foreground-light">Sending request...</p>
@@ -430,8 +430,8 @@ export const EdgeFunctionTesterSheet = ({ visible, onClose }: EdgeFunctionTester
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={isLoading}
-                  disabled={isLoading}
+                  loading={isPending}
+                  disabled={isPending}
                   onClick={() =>
                     sendEvent({
                       action: 'edge_function_test_send_button_clicked',

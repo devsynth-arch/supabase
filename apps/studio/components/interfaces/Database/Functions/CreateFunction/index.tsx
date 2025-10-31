@@ -87,9 +87,9 @@ export const CreateFunction = ({
   })
   const language = form.watch('language')
 
-  const { mutate: createDatabaseFunction, isLoading: isCreating } =
+  const { mutate: createDatabaseFunction, isPending: isCreating } =
     useDatabaseFunctionCreateMutation()
-  const { mutate: updateDatabaseFunction, isLoading: isUpdating } =
+  const { mutate: updateDatabaseFunction, isPending: isUpdating } =
     useDatabaseFunctionUpdateMutation()
 
   function isClosingSidePanel() {

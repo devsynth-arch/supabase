@@ -88,20 +88,20 @@ export const ConnectTablesDialog = ({ bucket }: { bucket: AnalyticsBucket }) => 
   const { data: sourcesData } = useReplicationSourcesQuery({ projectRef })
   const sourceId = sourcesData?.sources.find((s) => s.name === projectRef)?.id
 
-  const { mutateAsync: createNamespace, isLoading: isCreatingNamespace } =
+  const { mutateAsync: createNamespace, isPending: isCreatingNamespace } =
     useIcebergNamespaceCreateMutation()
 
-  const { mutateAsync: createPublication, isLoading: isCreatingPublication } =
+  const { mutateAsync: createPublication, isPending: isCreatingPublication } =
     useCreatePublicationMutation()
 
-  const { mutateAsync: createDestinationPipeline, isLoading: creatingDestinationPipeline } =
+  const { mutateAsync: createDestinationPipeline, isPending: isCreatingDestinationPipeline } =
     useCreateDestinationPipelineMutation({
       onSuccess: () => {},
     })
 
   const { mutateAsync: startPipeline } = useStartPipelineMutation()
 
-  const isConnecting = isCreatingNamespace || creatingDestinationPipeline || isCreatingPublication
+  const isConnecting = isCreatingNamespace || isCreatingDestinationPipeline || isCreatingPublication
 
   const onSubmit: SubmitHandler<ConnectTablesForm> = async (values) => {
     // [Joshen] Currently creates the destination for the analytics bucket here

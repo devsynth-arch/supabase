@@ -32,6 +32,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from 'ui'
+import ConfirmationModal from 'ui-patterns/Dialogs/ConfirmationModal'
 import { FormItemLayout } from 'ui-patterns/form/FormItemLayout/FormItemLayout'
 import ChooseFunctionForm from './ChooseFunctionForm'
 import {
@@ -40,7 +41,6 @@ import {
   TRIGGER_ORIENTATIONS,
   TRIGGER_TYPES,
 } from './Triggers.constants'
-import ConfirmationModal from 'ui-patterns/Dialogs/ConfirmationModal'
 
 const formId = 'create-trigger'
 
@@ -92,7 +92,7 @@ export const TriggerSheet = ({
   const [isClosingPanel, setIsClosingPanel] = useState(false)
   const [showFunctionSelector, setShowFunctionSelector] = useState(false)
 
-  const { mutate: createDatabaseTrigger, isLoading: isCreating } = useDatabaseTriggerCreateMutation(
+  const { mutate: createDatabaseTrigger, isPending: isCreating } = useDatabaseTriggerCreateMutation(
     {
       onSuccess: () => {
         toast.success(`Successfully created trigger`)
@@ -103,7 +103,7 @@ export const TriggerSheet = ({
       },
     }
   )
-  const { mutate: updateDatabaseTrigger, isLoading: isUpdating } = useDatabaseTriggerUpdateMutation(
+  const { mutate: updateDatabaseTrigger, isPending: isUpdating } = useDatabaseTriggerUpdateMutation(
     {
       onSuccess: () => {
         toast.success(`Successfully updated trigger`)
