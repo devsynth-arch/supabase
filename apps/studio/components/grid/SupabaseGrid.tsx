@@ -22,6 +22,7 @@ import { GridProps } from './types'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { useTableFilter } from './hooks/useTableFilter'
 import { useTableSort } from './hooks/useTableSort'
+import { keepPreviousData } from '@tanstack/react-query'
 
 export const SupabaseGrid = ({
   customHeader,
@@ -59,7 +60,7 @@ export const SupabaseGrid = ({
       roleImpersonationState: roleImpersonationState as RoleImpersonationState,
     },
     {
-      keepPreviousData: true,
+      placeholderData: keepPreviousData,
       retry: (_, error: any) => {
         const doesNotExistError = error && error.message?.includes('does not exist')
         if (doesNotExistError) onApplySorts([])

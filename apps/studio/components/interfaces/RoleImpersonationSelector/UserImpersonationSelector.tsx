@@ -30,6 +30,7 @@ import {
 } from 'ui'
 import { InfoTooltip } from 'ui-patterns/info-tooltip'
 import { getAvatarUrl, getDisplayName } from '../Auth/Users/Users.utils'
+import { keepPreviousData } from '@tanstack/react-query'
 
 type AuthenticatorAssuranceLevels = 'aal1' | 'aal2'
 
@@ -60,7 +61,7 @@ const UserImpersonationSelector = () => {
         keywords: debouncedSearchText.trim().toLocaleLowerCase(),
       },
       {
-        keepPreviousData: true,
+        placeholderData: keepPreviousData,
       }
     )
   const users = useMemo(() => data?.pages.flatMap((page) => page.result) ?? [], [data?.pages])

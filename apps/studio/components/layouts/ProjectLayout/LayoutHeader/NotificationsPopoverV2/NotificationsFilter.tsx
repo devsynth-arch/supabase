@@ -26,6 +26,7 @@ import { useProjectsInfiniteQuery } from 'data/projects/projects-infinite-query'
 import { useNotificationsStateSnapshot } from 'state/notifications'
 import { CriticalIcon, WarningIcon } from 'ui'
 import { Input } from 'ui-patterns/DataInputs/Input'
+import { keepPreviousData } from '@tanstack/react-query'
 
 // [Joshen] Opting to not use infinite loading for projects in this UI specifically
 // since the UX feels quite awkward having infinite loading for just a specific section in this Popover
@@ -40,7 +41,7 @@ export const NotificationsFilter = ({ activeTab }: { activeTab: 'inbox' | 'archi
   const { data: organizations } = useOrganizationsQuery()
   const { data } = useProjectsInfiniteQuery(
     { search: search.length === 0 ? search : debouncedSearch },
-    { keepPreviousData: true, enabled: open }
+    { placeholderData: keepPreviousData, enabled: open }
   )
   const projects = useMemo(() => data?.pages.flatMap((page) => page.projects), [data?.pages]) || []
   const projectCount = data?.pages[0].pagination.count ?? 0

@@ -32,6 +32,7 @@ import {
   Button,
   WarningIcon,
 } from 'ui'
+import { keepPreviousData } from '@tanstack/react-query'
 
 const logsUpgradeError = 'upgrade to Team or Enterprise Plan to access audit logs.'
 
@@ -92,7 +93,7 @@ export const AuditLogs = () => {
     fetchNextPage,
   } = useOrgProjectsInfiniteQuery(
     { slug, search: search.length === 0 ? search : debouncedSearch },
-    { keepPreviousData: true, enabled: showFilters }
+    { placeholderData: keepPreviousData, enabled: showFilters }
   )
   const { data: organizations } = useOrganizationsQuery({
     enabled: showFilters,

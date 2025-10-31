@@ -9,6 +9,7 @@ import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { Button, Tooltip, TooltipContent, TooltipTrigger } from 'ui'
 import ConfirmationModal from 'ui-patterns/Dialogs/ConfirmationModal'
 import { Filter } from './Users.constants'
+import { keepPreviousData } from '@tanstack/react-query'
 
 interface UsersFooterProps {
   filter: Filter
@@ -43,7 +44,7 @@ export const UsersFooter = ({
       providers: selectedProviders,
       forceExactCount,
     },
-    { keepPreviousData: true }
+    { placeholderData: keepPreviousData }
   )
   const totalUsers = countData?.count ?? 0
 

@@ -37,6 +37,7 @@ import {
   TreeViewItem,
   cn,
 } from 'ui'
+import { keepPreviousData } from '@tanstack/react-query'
 
 interface SQLEditorTreeViewItemProps
   extends Omit<ComponentProps<typeof TreeViewItem>, 'name' | 'xPadding'> {
@@ -137,7 +138,7 @@ export const SQLEditorTreeViewItem = ({
     },
     {
       enabled: isEnabled,
-      keepPreviousData: true,
+      placeholderData: keepPreviousData,
     }
   )
   useEffect(() => {
