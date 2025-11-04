@@ -29,7 +29,7 @@ import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import Head from 'next/head'
 import { NuqsAdapter } from 'nuqs/adapters/next/pages'
-import { ErrorInfo, useCallback } from 'react'
+import { ErrorInfo, useCallback, useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import {
@@ -86,6 +86,10 @@ loader.config({
 function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   const queryClient = useRootQueryClient()
   const { appTitle } = useCustomContent(['app:title'])
+
+  useEffect(() => {
+    console.log('A stupid pointless useEffect to test lint ratcheting', appTitle)
+  }, [])
 
   const getLayout = Component.getLayout ?? ((page) => page)
 
