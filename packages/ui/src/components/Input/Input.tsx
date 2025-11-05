@@ -111,10 +111,6 @@ function Input({
     if (validation) fieldLevelValidation(id, validation(value))
   }, [])
 
-  // useEffect(() => {
-  //   error = touched && touched[id] ? error : undefined
-  // }, [errors, touched])
-
   function _onCopy(value: any) {
     copyToClipboard(value, () => {
       setCopyLabel('Copied')
